@@ -4,8 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <title>JavaScriptでURIエンコード（URLエンコード）を行う｜サンプルコード</title>
-
-function encode_all(){
+<script>
+function encode(){
 	$('#result_uri').val('');
 	var text = $('#in_text').val();
 	if (! text){
@@ -16,6 +16,10 @@ function encode_all(){
 	$('#result_uri').val( encodeURI(text) );
 
 }
+
+
+</script>
+
 <body>
 <form id="form1" name="form1" method="post" action="">
 
