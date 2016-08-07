@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<title>JavaScriptでURIエンコード（URLエンコード）を行う｜サンプルコード</title>
+
+function encode_all(){
+	$('#result_uri').val('');
+	var text = $('#in_text').val();
+	if (! text){
+		alert('文字が入力されていません。');
+		return;
+	}
+
+	$('#result_uri').val( encodeURI(text) );
+
+}
+<body>
+<form id="form1" name="form1" method="post" action="">
+
+<b>入力テキスト</b>
+<textarea name="in_text" id="in_text"></textarea>
+
+<p>
+<input type="button" value="エンコード↓" onclick="encode();" />　<input type="reset" />
+</p>
+<b>結果</b>
+<textarea name="result_uri" id="result_uri"></textarea>
+
+</body>
+</html>
