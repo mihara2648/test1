@@ -1,41 +1,69 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<title>JavaScriptでURIエンコード（URLエンコード）を行う｜サンプルコード</title>
+<script type="text/javascript" src="jquery-3.1.0.min.js"></script>
+<title>GitBucket用URLエンコードツール</title>
+
+<style type="text/css">  
+textarea{
+	width: 500px;
+	height : 100px;
+	display: block;
+}
+b{
+	margin-top:15px;
+	display: block;
+}
+input{
+	display: block;
+	float: left;
+	margin-right:20px;
+}
+</style>  
+
 <script>
 function encode(){
-	$('#result_uri').val('');
+	$('#result_uri_inside').val('');
+	$('#result_uri_outside').val('');
 	var text = $('#in_text').val();
 	if (! text){
 		alert('文字が入力されていません。');
 		return;
 	}
-	var befdaku = new Array(" ","う゛","が","ぎ","ぐ","げ","ご","ざ","じ","ず","ぜ","ぞ","だ","ぢ","づ","で","ど","ば","び","ぶ","べ","ぼ","ぱ","ぴ","ぷ","ぺ","ぽ","ヴ","ガ","ギ","グ","ゲ","ゴ","ザ","ジ","ズ","ゼ","ゾ","ダ","ヂ","ヅ","デ","ド","バ","ビ","ブ","ベ","ボ","パ","ピ","プ","ペ","ポ");
-	var aftdaku = new Array("-","ゔ","が","ぎ","ぐ","げ","ご","ざ","じ","ず","ぜ","ぞ","だ","ぢ","づ","で","ど","ば","び","ぶ","べ","ぼ","ぱ","ぴ","ぷ","ぺ","ぽ","ヴ","ガ","ギ","グ","ゲ","ゴ","ザ","ジ","ズ","ゼ","ゾ","ダ","ヂ","ヅ","デ","ド","バ","ビ","ブ","ベ","ボ","パ","ピ","プ","ペ","ポ");
+	var befdaku = new Array("&"," ","う゛","が","ぎ","ぐ","げ","ご","ざ","じ","ず","ぜ","ぞ","だ","ぢ","づ","で","ど","ば","び","ぶ","べ","ぼ","ぱ","ぴ","ぷ","ぺ","ぽ","ヴ","ガ","ギ","グ","ゲ","ゴ","ザ","ジ","ズ","ゼ","ゾ","ダ","ヂ","ヅ","デ","ド","バ","ビ","ブ","ベ","ボ","パ","ピ","プ","ペ","ポ");
+	var aftdaku = new Array("&amp;","-","ゔ","が","ぎ","ぐ","げ","ご","ざ","じ","ず","ぜ","ぞ","だ","ぢ","づ","で","ど","ば","び","ぶ","べ","ぼ","ぱ","ぴ","ぷ","ぺ","ぽ","ヴ","ガ","ギ","グ","ゲ","ゴ","ザ","ジ","ズ","ゼ","ゾ","ダ","ヂ","ヅ","デ","ド","バ","ビ","ブ","ベ","ボ","パ","ピ","プ","ペ","ポ");
 	var reg;
 	for(i=0; i<aftdaku.length; i++){
 		reg = new RegExp(befdaku[i],"g");
 		text = text.replace(reg, aftdaku[i]);
 		}
-	$('#result_uri').val( encodeURI(text) );
+	text = encodeURIComponent(text);
+	$('#result_uri_inside').val(text);
+	text = encodeURIComponent(text);
+	text = text.toLowerCase();
+	$('#result_uri_outside').val(text);
 
 }
 
 </script>
 
+</head>
+
 <body>
 <form id="form1" name="form1" method="post" action="">
 
-<b>入力テキスト</b>
+<b>入力テキスト</b><br/>
 <textarea name="in_text" id="in_text"></textarea>
 
 <p>
-<input type="button" value="エンコード↓" onclick="encode();" />　<input type="reset" />
+<input type="button" value="エンコード" onclick="encode();" />　<input type="reset" />
 </p>
-<b>結果</b>
-<textarea name="result_uri" id="result_uri"></textarea>
+<b>結果(内部リンク用)</b><br/>
+<textarea name="result_uri_inside" id="result_uri_inside"></textarea><br/>
 
+<b>結果(外部リンク用)</b><br/>
+<textarea name="result_uri_outside" id="result_uri_outside"></textarea>
+<br/>
+<a href="index.html">トップページへ</a>
 </body>
 </html>
